@@ -37,4 +37,8 @@ io.on('connection', function(socket) {
     });
   });
 
+  socket.on('clear_canvas', function() {
+    io.emit('clear_canvas', true);
+  });
+
 });

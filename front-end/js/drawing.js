@@ -39,7 +39,6 @@
   };
 
   //Color
-  //var buttonColor = document.getElementsByClass('colorPalette').addEventListener(click)
   function colorPicker(obj) {
     switch (obj.id) {
         case "green":
@@ -60,8 +59,18 @@
         case "black":
             mouse.color = "black";
             break;
-    }
-}
+      }
+  }
+
+  //Send package to clear canvas
+  function clearCanvas() {
+    socket.emit('clear_canvas', true);
+  }
+
+  //Callback from server to clear canvas
+  socket.on('clear_canvas', function(){
+    context.clearRect(0, 0, width, height);
+  });
 
   //Draw line received from the server
   socket.on('draw_line', function(data) {
