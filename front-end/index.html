@@ -2,21 +2,39 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pintucards</title>
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
+
   <body>
-    <canvas id="ctx" style="border: 1px solid black;"></canvas>
-
-    <div style="position:absolute;top:12%;left:43%;">Choose Color</div>
-    <div style="position:absolute;top:15%;left:45%;width:10px;height:10px;background:green;" class="colorPalette" id="green" onclick="colorPicker(this);"></div>
-    <div style="position:absolute;top:15%;left:46%;width:10px;height:10px;background:blue;" class="colorPalette" id="blue" onclick="colorPicker(this)"></div>
-    <div style="position:absolute;top:15%;left:47%;width:10px;height:10px;background:red;" class="colorPalette" id="red" onclick="colorPicker(this)"></div>
-    <div style="position:absolute;top:17%;left:45%;width:10px;height:10px;background:yellow;" class="colorPalette" id="yellow" onclick="colorPicker(this)"></div>
-    <div style="position:absolute;top:17%;left:46%;width:10px;height:10px;background:orange;" class="colorPalette" id="orange" onclick="colorPicker(this)"></div>
-    <div style="position:absolute;top:17%;left:47%;width:10px;height:10px;background:black;" class="colorPalette" id="black" onclick="colorPicker(this)"></div>
-
+    <div class="container-fluid">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="ctx" style="border: 1px solid black;"></canvas>
+          </div>
+          <div class="col-md-6">
+            <h4>Choose Color</h4>
+            <div class="col-md-1 colorPalette">
+              <div id="green" onclick="colorPicker(this)"></div>
+              <div id="blue" onclick="colorPicker(this)"></div>
+              <div id="red" onclick="colorPicker(this)"></div>
+              <div id="yellow" onclick="colorPicker(this)"></div>
+              <div id="orange" onclick="colorPicker(this)"></div>
+              <div id="black" onclick="colorPicker(this)"></div>
+            </div>
+            <input type="button" value="Clear" onclick="clearCanvas()"/>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" charset="utf-8"></script>
     <script src="js/drawing.js" charset="utf-8"></script>
   </body>
 </html>
