@@ -1,0 +1,32 @@
+%color-box{
+  height: 30px;
+  width: 30px;
+  border: 1px black;
+}
+
+.colorPalette{
+  #green{
+    @extend %color-box;
+    background: green;
+  }
+  #blue{
+    @extend %color-box;
+    background: blue;
+  }
+  #red{
+    @extend %color-box;
+    background: red;
+  }
+  #yellow{
+    @extend %color-box;
+    background: yellow;
+  }
+  #orange{
+    @extend %color-box;
+    background: orange;
+  }
+  #black{
+    @extend %color-box;
+    background: black;
+  }
+}

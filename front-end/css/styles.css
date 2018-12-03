@@ -1,0 +1,26 @@
+.colorPalette #black, .colorPalette #orange, .colorPalette #yellow, .colorPalette #red, .colorPalette #blue, .colorPalette #green {
+  height: 30px;
+  width: 30px;
+  border: 1px black;
+}
+
+.colorPalette #green {
+  background: green;
+}
+.colorPalette #blue {
+  background: blue;
+}
+.colorPalette #red {
+  background: red;
+}
+.colorPalette #yellow {
+  background: yellow;
+}
+.colorPalette #orange {
+  background: orange;
+}
+.colorPalette #black {
+  background: black;
+}
+
+/*# sourceMappingURL=styles.css.map */
