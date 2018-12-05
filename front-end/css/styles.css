@@ -1,3 +1,8 @@
+.canvasOptions {
+  position: relative;
+  top: -508px;
+}
+
 .colorPalette #black, .colorPalette #orange, .colorPalette #yellow, .colorPalette #red, .colorPalette #blue, .colorPalette #green {
   height: 30px;
   width: 30px;
@@ -21,6 +26,10 @@
 }
 .colorPalette #black {
   background: black;
+}
+
+.gameDiv {
+  display: none;
 }
 
 /*# sourceMappingURL=styles.css.map */
