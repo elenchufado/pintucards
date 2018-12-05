@@ -12,21 +12,45 @@
   <body>
     <div class="container-fluid">
       <div class="container py-5">
-        <div class="row">
-          <div class="col-md-6">
-            <canvas id="ctx" style="border: 1px solid black;"></canvas>
-          </div>
-          <div class="col-md-6">
-            <h4>Choose Color</h4>
-            <div class="col-md-1 colorPalette">
-              <div id="green" onclick="colorPicker(this)"></div>
-              <div id="blue" onclick="colorPicker(this)"></div>
-              <div id="red" onclick="colorPicker(this)"></div>
-              <div id="yellow" onclick="colorPicker(this)"></div>
-              <div id="orange" onclick="colorPicker(this)"></div>
-              <div id="black" onclick="colorPicker(this)"></div>
+        <div class="logInDiv">
+          <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <label class="sr-only">Nickname</label>
+              <input id="nickname" type="text" class="form-control" placeholder="Nickname">
             </div>
-            <input type="button" value="Clear" onclick="clearCanvas()"/>
+            <button id="confirmNickname" type="submit" class="btn btn-primary mb-2">Confirm</button>
+          </form>
+        </div>
+
+        <div class="gameDiv">
+          <div class="row">
+            <div class="col-md-3">
+              <h1>Users data</h1>
+            </div>
+            <div class="col-md-6">
+              <canvas id="ctx" style="border: 1px solid black;"></canvas>
+              <div class="canvasOptions">
+                <div class="colorPalette">
+                  <div id="green" onclick="colorPicker(this)"></div>
+                  <div id="blue" onclick="colorPicker(this)"></div>
+                  <div id="red" onclick="colorPicker(this)"></div>
+                  <div id="yellow" onclick="colorPicker(this)"></div>
+                  <div id="orange" onclick="colorPicker(this)"></div>
+                  <div id="black" onclick="colorPicker(this)"></div>
+                </div>
+                <input type="button" value="Clear" onclick="clearCanvas()"/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="chatBox">
+                <div id="chatText">
+                  <p>Chat</p>
+                </div>
+                <form id="chatForm">
+                  <input class="form-control" id="chatInput" type="text" placeholder="Write your answer">
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,6 +59,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="js/login.js" charset="utf-8"></script>
     <script src="js/drawing.js" charset="utf-8"></script>
+    <script src="js/chat.js" charset="utf-8"></script>
   </body>
 </html>
