@@ -12,12 +12,17 @@ var server = app.listen(2000);
 console.log("Server started");
 
 // Socket IO
+var socket_list = [];
 var line_history = [];
 var line_color = [];
-var socket_list = [];
 
 var io = require('socket.io').listen(server);
 io.on('connection', function(socket) {
+  // Gives ID to player
+  socket.id = Math.random();
+  socket_list[socket.id] = socket;
+  var playerName =('' + socket.id).slice(2,7);
+
   // Send history to new clients
   for (var i in line_history){
     socket.emit('draw_line', {
@@ -39,6 +44,18 @@ io.on('connection', function(socket) {
 
   socket.on('clear_canvas', function() {
     io.emit('clear_canvas', true);
+  });
+
+  socket.on('correctAnswer', function() {
+    for (var i in socket_list){
+      socket_list[i].emit('addToChat', '<span>' + playerName + ' got the correct answer </span>');
+    }
+  });
+
+  socket.on('sendChatServer', function(data) {
+    for (var i in socket_list){
+      socket_list[i].emit('addToChat', playerName + ': ' + data);
+    }
   });
 
 });
