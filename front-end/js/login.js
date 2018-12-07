@@ -1,6 +1,7 @@
 var logInDiv = document.getElementById('logInDiv');
 var nickname = document.getElementById('nickname');
 var confirmNickname = document.getElementById('confirmNickname');
+var socket = io();
 
 confirmNickname.onclick = function() {
   socket.emit('signIn',{

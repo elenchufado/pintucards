@@ -64,16 +64,16 @@
 
   //Send package to clear canvas
   function clearCanvas() {
-    socket.emit('clear_canvas', true);
+    socket.emit('clearCanvas', true);
   }
 
   //Callback from server to clear canvas
-  socket.on('clear_canvas', function(){
+  socket.on('clearCanvas', function(){
     context.clearRect(0, 0, width, height);
   });
 
   //Draw line received from the server
-  socket.on('draw_line', function(data) {
+  socket.on('drawLine', function(data) {
     var line = data.line;
     context.strokeStyle = data.color;
     context.lineWidth = 5;
@@ -86,7 +86,7 @@
   //Sends info to server every 25ms
   function mainLoop() {
      if (mouse.click && mouse.move && mouse.positionPrev) {
-        socket.emit('draw_line', {
+        socket.emit('drawLine', {
           line: [ mouse.position, mouse.positionPrev],
           color: mouse.color
         });
