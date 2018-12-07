@@ -27,6 +27,7 @@
   "homepage": "https://github.com/elenchufado/pintucards#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "mongojs": "^2.6.0",
     "npm": "^6.4.1",
     "socket.io": "^2.2.0"
   }
