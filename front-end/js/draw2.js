@@ -1,5 +1,5 @@
 var socket;
-var myCanvasContext;
+var strokeColor = 'white';
 
 function setup() {
   var myCanvas = createCanvas(550, 400);
@@ -9,37 +9,63 @@ function setup() {
   var socket = io();
 
   socket.on('drawLine', function(data) {
-    stroke(255);
+    stroke(data.strokeColor);
     line(data.positionX, data.positionY, data.prePositionX, data.prePositionY);
   });
 
   socket.on('clearCanvas', function(data) {
     if (data) {
-      document.getElementsByClassName('p5Canvas')[0].getContext('2d').clearRect(0,0,550,400);
+      setup(); //Restart canvas by redrawing it
     }
   })
 }
 
 
 function draw() {
-  stroke(255);
+  stroke(strokeColor);
   if (mouseIsPressed === true) {
     line(mouseX, mouseY, pmouseX, pmouseY);
-    sendMouse(mouseX, mouseY, pmouseX, pmouseY);
+    sendMouse(mouseX, mouseY, pmouseX, pmouseY, strokeColor);
   }
 }
 
-function sendMouse(x, y, pX, pY) {
-  var mousePosition = {
+//Function to send mouse data in just one variable
+function sendMouse(x, y, pX, pY, color) {
+  var mouseDrawingData = {
     positionX : x,
     positionY : y,
     prePositionX : pX,
-    prePositionY : pY
+    prePositionY : pY,
+    strokeColor : color
   };
-  socket.emit('drawLine', mousePosition);
+  socket.emit('drawLine', mouseDrawingData);
 }
 
 //Send package to clear canvas
 function clearCanvas() {
   socket.emit('clearCanvas', true);
+}
+
+
+function colorPicker(obj) {
+  switch (obj.id) {
+      case 'green':
+          strokeColor = 'green';
+          break;
+      case 'blue':
+          strokeColor = 'blue';
+          break;
+      case 'red':
+          strokeColor = 'red';
+          break;
+      case 'yellow':
+          strokeColor = 'yellow';
+          break;
+      case 'orange':
+          strokeColor = 'orange';
+          break;
+      case 'black':
+          strokeColor = 'black';
+          break;
+    }
 }

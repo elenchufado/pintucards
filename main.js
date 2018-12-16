@@ -41,13 +41,14 @@ io.on('connection', function(socket) {
   socket_list[socket.id] = socket;*/
 
 
-  function accessValidation(state) {
-    if (state === false) {
-      client.emit('signResponse',{success:false});
+  var validation = function(data) {
+    if (data) {
+      socket.emit('signResponse',{success:true});
     } else {
-      client.emit('signResponse',{success:true});
+      socket.emit('signResponse',{success:false});
     }
   }
+
 
   //LogIn
   socket.on('signIn',function(data){
@@ -56,13 +57,12 @@ io.on('connection', function(socket) {
         console.log("before conditional true");
           if(res){
             console.log("after conditional true");
-            socket.emit('hola','hola')
-            accessValidation(false);
+            validation(false);
           } else {
             console.log("before conditional false");
               addUser(data,function(){
                 console.log("after conditional false");
-                accessValidation(true);
+                validation(true);
               });
           }
       });
