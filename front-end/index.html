@@ -4,31 +4,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pintucards</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
   </head>
 
   <body>
+
     <div class="container-fluid">
       <div class="container py-5">
-        <div class="logInDiv">
-          <form class="form-inline">
-            <div class="form-group mx-sm-3 mb-2">
-              <label class="sr-only">Nickname</label>
-              <input id="nickname" type="text" class="form-control" placeholder="Nickname">
-            </div>
-            <button id="confirmNickname" type="submit" class="btn btn-primary mb-2">Confirm</button>
-          </form>
+
+        <div id="logInDiv">
+          <input id="nickname" type="text" placeholder="Nickname">
+          <button id="confirmNickname">Confirm</button>
         </div>
 
-        <div class="gameDiv">
+        <div id="gameDiv">
           <div class="row">
             <div class="col-md-3">
               <h1>Users data</h1>
             </div>
             <div class="col-md-6">
-              <canvas id="ctx" style="border: 1px solid black;"></canvas>
+              <div id="ctx2"></div>
               <div class="canvasOptions">
                 <div class="colorPalette">
                   <div id="green" onclick="colorPicker(this)"></div>
@@ -59,8 +57,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js" charset="utf-8"></script>
-    <script src="js/login.js" charset="utf-8"></script>
-    <script src="js/drawing.js" charset="utf-8"></script>
+    <!--<script src="js/login.js" charset="utf-8"></script>
+    <script src="js/drawing.js" charset="utf-8"></script>-->
+    <script src="js/draw2.js" charset="utf-8"></script>
     <script src="js/chat.js" charset="utf-8"></script>
   </body>
 </html>
