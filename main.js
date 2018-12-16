@@ -4,63 +4,71 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/front-end/index.html');
-})
-
-app.use('/front-end', express.static(__dirname + '/front-end'));
+app.use('/', express.static(__dirname + '/front-end'));
 
 var server = app.listen(2000);
 console.log("Server started");
 
 // Socket IO
 //cb stands for "Call Backs", because Data Bases are asyncronous
-var isUsernameTaken = function(data,cb) {
-  db.users.find({username:data.nickname}, function(err,res) {
-    if(res.lenght > 0){
+var isUsernameTaken = function(data, cb) {
+  db.users.find({username:data.nickname}, function(err, res) {
+    if(res.length > 0){
       cb(true);
     } else {
-      cd(false);
+      cb(false);
     }
   });
-};
+}
 
-var addUser = function(data,cb) {
-  db.users.insert({username:data.nickname}, function(err) {
-    cb();
-  });
-};
+var addUser = function(data, cb) {
+  if (data.nickname === '') {
+    console.log('error');
+  } else {
+    console.log("New user added");
+    db.users.insert({username:data.nickname}, function(err) {
+      cb();
+    });
+  }
+}
 
 var socket_list = [];
-var line_history = [];
-var line_color = [];
 
 var io = require('socket.io').listen(server);
 io.on('connection', function(socket) {
-  // Gives ID to player
+  /* Gives ID to player
   socket.id = Math.random();
-  socket_list[socket.id] = socket;
-  var playerName =('' + socket.id).slice(2,7);
+  socket_list[socket.id] = socket;*/
+
+
+  function accessValidation(state) {
+    if (state === false) {
+      client.emit('signResponse',{success:false});
+    } else {
+      client.emit('signResponse',{success:true});
+    }
+  }
 
   //LogIn
-  socket.on('signIp',function(data){
+  socket.on('signIn',function(data){
+    console.log("Listen the package");
       isUsernameTaken(data,function(res){
+        console.log("before conditional true");
           if(res){
-              socket.emit('signInResponse',{
-                success:false
-              });
+            console.log("after conditional true");
+            socket.emit('hola','hola')
+            accessValidation(false);
           } else {
+            console.log("before conditional false");
               addUser(data,function(){
-                  socket.emit('signInResponse',{
-                    success:true
-                  });
+                console.log("after conditional false");
+                accessValidation(true);
               });
           }
       });
-    });
+  });
 
-
-  // Send history to new clients
+  /* Send history to new clients
   for (var i in line_history){
     socket.emit('drawLine', {
       line: line_history[i],
@@ -77,6 +85,10 @@ io.on('connection', function(socket) {
       line: data.line,
       color: data.color
     });
+  });*/
+
+  socket.on('drawLine', function(data) {
+    socket.broadcast.emit('drawLine', data)
   });
 
   socket.on('clearCanvas', function() {
